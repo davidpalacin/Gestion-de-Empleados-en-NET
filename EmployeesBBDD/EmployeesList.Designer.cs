@@ -230,6 +230,7 @@
             this.btnActualizarTabla.TabIndex = 39;
             this.btnActualizarTabla.Text = "Actualizar";
             this.btnActualizarTabla.UseVisualStyleBackColor = true;
+            this.btnActualizarTabla.Click += new System.EventHandler(this.btnActualizarTabla_Click);
             // 
             // lstEmployees
             // 

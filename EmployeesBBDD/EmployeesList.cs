@@ -37,5 +37,13 @@ namespace EmployeesBBDD
             lstEmployees.DataSource = null;
             lstEmployees.DataSource = listEmployees;
         }
+
+        private void btnActualizarTabla_Click(object sender, EventArgs e)
+        {
+            listEmployees.Clear();
+            listEmployees = dalEmployee.ObtenerEmployees();
+            lstEmployees.DataSource = null;
+            lstEmployees.DataSource = listEmployees;
+        }
     }
 }
