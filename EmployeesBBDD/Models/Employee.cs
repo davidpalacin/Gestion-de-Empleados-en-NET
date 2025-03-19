@@ -33,6 +33,19 @@ namespace EmployeesBBDD.Models
             this.departmentId = departmentId;
         }
 
+        public Employee(string firstName, string lastName, string email, string phoneNumber, DateTime hireDate, int jobId, decimal salary, int? managerId, int? departmentId)
+        {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.email = email;
+            this.phoneNumber = phoneNumber;
+            this.hireDate = hireDate;
+            this.jobId = jobId;
+            this.salary = salary;
+            this.managerId = managerId;
+            this.departmentId = departmentId;
+        }
+
         public override string ToString()
         {
             return $"{firstName} {lastName} ({email})";

@@ -109,6 +109,7 @@
             this.btnCrearEmployee.TabIndex = 14;
             this.btnCrearEmployee.Text = "Crear Employee";
             this.btnCrearEmployee.UseVisualStyleBackColor = true;
+            this.btnCrearEmployee.Click += new System.EventHandler(this.btnCrearEmployee_Click);
             // 
             // txtPhone
             // 
