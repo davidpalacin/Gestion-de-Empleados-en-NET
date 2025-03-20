@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 namespace EmployeesBBDD.DAL
 {
@@ -76,6 +78,20 @@ namespace EmployeesBBDD.DAL
             command.Parameters.AddWithValue("@EmployeeId", employeeId);
             command.ExecuteNonQuery();
             this.conn.sqlConnection.Close();
+        }
+
+        public void EditarEmployee(
+            int id,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            DateTime hireDate,
+            int jobId,
+            int departmentId,
+            int managerId)
+        {
+
         }
     }
 }

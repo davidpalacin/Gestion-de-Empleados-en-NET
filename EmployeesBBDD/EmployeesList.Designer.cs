@@ -50,6 +50,7 @@
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
             this.btnActualizarTabla = new System.Windows.Forms.Button();
             this.lstEmployees = new System.Windows.Forms.ListBox();
+            this.btnEditarEmployee = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.nudSalary)).BeginInit();
             this.SuspendLayout();
             // 
@@ -241,12 +242,24 @@
             this.lstEmployees.Name = "lstEmployees";
             this.lstEmployees.Size = new System.Drawing.Size(502, 304);
             this.lstEmployees.TabIndex = 38;
+            this.lstEmployees.SelectedIndexChanged += new System.EventHandler(this.lstEmployees_SelectedIndexChanged);
+            // 
+            // btnEditarEmployee
+            // 
+            this.btnEditarEmployee.Location = new System.Drawing.Point(793, 383);
+            this.btnEditarEmployee.Name = "btnEditarEmployee";
+            this.btnEditarEmployee.Size = new System.Drawing.Size(198, 51);
+            this.btnEditarEmployee.TabIndex = 41;
+            this.btnEditarEmployee.Text = "Editar";
+            this.btnEditarEmployee.UseVisualStyleBackColor = true;
+            this.btnEditarEmployee.Click += new System.EventHandler(this.btnEditarEmployee_Click);
             // 
             // EmployeesList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1171, 526);
+            this.Controls.Add(this.btnEditarEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
             this.Controls.Add(this.btnActualizarTabla);
             this.Controls.Add(this.lstEmployees);
@@ -301,5 +314,6 @@
         private System.Windows.Forms.Button btnDeleteEmployee;
         private System.Windows.Forms.Button btnActualizarTabla;
         private System.Windows.Forms.ListBox lstEmployees;
+        private System.Windows.Forms.Button btnEditarEmployee;
     }
 }

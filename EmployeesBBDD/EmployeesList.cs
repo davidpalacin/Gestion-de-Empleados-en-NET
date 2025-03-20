@@ -68,5 +68,56 @@ namespace EmployeesBBDD
             MessageBox.Show("Empleado insertado correctamente");
             btnActualizarTabla_Click(sender, e);
         }
+
+        private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Employee select = lstEmployees.SelectedItem as Employee;
+
+            if (select != null)
+            {
+                string name = select.lastName;
+
+                btnEditarEmployee.Text = $"Editar a {name}";
+                txtFirstName.Text = select.firstName;
+                txtLastName.Text = select.lastName;
+                txtEmail.Text = select.email;
+                txtPhone.Text = select.phoneNumber;
+                dtpHireDate.Value = select.hireDate;
+            }
+            else
+            {
+                btnEditarEmployee.Text = "Seleccione un employee";
+            }
+
+        }
+
+        private void btnEditarEmployee_Click(object sender, EventArgs e)
+        {
+            Employee selected = lstEmployees.SelectedItem as Employee;
+            int id = selected.employeeId;
+            string firstName = txtFirstName.Text;
+            string lastName = txtLastName.Text;
+            string email = txtEmail.Text;
+            string phone = txtPhone.Text;
+            DateTime hireDate = dtpHireDate.Value;
+            int jobId = 4;
+            int departmentId = 1;
+            int managerId = 100;
+
+            dalEmployee.EditarEmployee(
+                id,
+                firstName,
+                lastName,
+                email,
+                phone,
+                hireDate,
+                jobId,
+                departmentId,
+                managerId
+            );
+
+            MessageBox.Show("Empleado editado.");
+            btnActualizarTabla_Click(sender, e);
+        }
     }
 }
