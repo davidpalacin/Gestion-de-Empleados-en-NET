@@ -42,6 +42,7 @@
             this.btnActualizarTabla = new System.Windows.Forms.Button();
             this.btnDeleteJob = new System.Windows.Forms.Button();
             this.btnAbrirEmployees = new System.Windows.Forms.Button();
+            this.btnEditarJob = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.davidPalacinEmployeesDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.davidPalacinEmployeesDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -122,6 +123,7 @@
             this.lstJobs.Name = "lstJobs";
             this.lstJobs.Size = new System.Drawing.Size(564, 304);
             this.lstJobs.TabIndex = 10;
+            this.lstJobs.SelectedIndexChanged += new System.EventHandler(this.lstJobs_SelectedIndexChanged);
             // 
             // btnActualizarTabla
             // 
@@ -129,7 +131,7 @@
             this.btnActualizarTabla.Name = "btnActualizarTabla";
             this.btnActualizarTabla.Size = new System.Drawing.Size(146, 51);
             this.btnActualizarTabla.TabIndex = 11;
-            this.btnActualizarTabla.Text = "Actualizar";
+            this.btnActualizarTabla.Text = "Actualizar Tabla";
             this.btnActualizarTabla.UseVisualStyleBackColor = true;
             this.btnActualizarTabla.Click += new System.EventHandler(this.btnActualizarTabla_Click);
             // 
@@ -153,11 +155,22 @@
             this.btnAbrirEmployees.UseVisualStyleBackColor = true;
             this.btnAbrirEmployees.Click += new System.EventHandler(this.btnAbrirEmployees_Click);
             // 
+            // btnEditarJob
+            // 
+            this.btnEditarJob.Location = new System.Drawing.Point(519, 428);
+            this.btnEditarJob.Name = "btnEditarJob";
+            this.btnEditarJob.Size = new System.Drawing.Size(260, 51);
+            this.btnEditarJob.TabIndex = 14;
+            this.btnEditarJob.Text = "Editar";
+            this.btnEditarJob.UseVisualStyleBackColor = true;
+            this.btnEditarJob.Click += new System.EventHandler(this.btnEditarJob_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1147, 716);
+            this.Controls.Add(this.btnEditarJob);
             this.Controls.Add(this.btnAbrirEmployees);
             this.Controls.Add(this.btnDeleteJob);
             this.Controls.Add(this.btnActualizarTabla);
@@ -193,6 +206,7 @@
         private System.Windows.Forms.Button btnActualizarTabla;
         private System.Windows.Forms.Button btnDeleteJob;
         private System.Windows.Forms.Button btnAbrirEmployees;
+        private System.Windows.Forms.Button btnEditarJob;
     }
 }
 

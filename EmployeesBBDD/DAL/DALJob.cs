@@ -60,6 +60,19 @@ namespace EmployeesBBDD.DAL
                 cmd.ExecuteNonQuery();
             this.conn.sqlConnection.Close();  // Ensure the connection is closed
         }
+
+        public void EditarJob(int jobId, string newTitle, decimal minSalary, decimal maxSalary)
+        {
+            this.conn.sqlConnection.Open();
+            string query = "UPDATE Jobs SET job_title = @newTitle, min_salary = @minSalary, max_salary = @maxSalary WHERE job_id = @jobId";
+            SqlCommand cmd = new SqlCommand(query, conn.sqlConnection);
+            cmd.Parameters.AddWithValue("@jobId", jobId);
+            cmd.Parameters.AddWithValue("@newTitle", newTitle);
+            cmd.Parameters.AddWithValue("@minSalary", minSalary);
+            cmd.Parameters.AddWithValue("@maxSalary", maxSalary);
+            cmd.ExecuteNonQuery();
+            this.conn.sqlConnection.Close();
+        }
     }
 
 }

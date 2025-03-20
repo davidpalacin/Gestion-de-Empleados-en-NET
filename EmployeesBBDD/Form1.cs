@@ -1,4 +1,5 @@
 ﻿using EmployeesBBDD.DAL;
+using EmployeesBBDD.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -97,6 +98,37 @@ namespace EmployeesBBDD
         {
             EmployeesList formEmployees = new EmployeesList();
             formEmployees.Show();
+        }
+
+        private void lstJobs_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Job selected = lstJobs.SelectedItem as Job;
+            if (selected != null)
+            {
+                string name = selected.JobTitle;
+                btnEditarJob.Text = $"Editar {name}";
+                txtJobName.Text = name;
+                txtMinSalary.Text = Convert.ToString(selected.MinSalary);
+                txtMaxSalary.Text = Convert.ToString(selected.MaxSalary);
+            }
+            else
+            {
+                btnEditarJob.Text = "Seleccione un job";
+            }
+        }
+
+        private void btnEditarJob_Click(object sender, EventArgs e)
+        {
+            string newTitle = txtJobName.Text;
+            decimal minSalary = Convert.ToDecimal(txtMinSalary.Text);
+            decimal maxSalary = Convert.ToDecimal(txtMaxSalary.Text);
+            Job selected = lstJobs.SelectedItem as Job;
+            int jobId = selected.JobId;
+
+            dalJobs.EditarJob(jobId, newTitle, minSalary, maxSalary);
+            lstJobs.SelectedIndex = jobId;
+            MessageBox.Show("Job editado correctamente");
+            btnActualizarTabla_Click(sender, e);
         }
     }
 }
