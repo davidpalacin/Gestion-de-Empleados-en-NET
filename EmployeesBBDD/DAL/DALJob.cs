@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace EmployeesBBDD.DAL
 {
@@ -26,6 +28,20 @@ namespace EmployeesBBDD.DAL
                 cmd.Parameters.AddWithValue("@MaxSalary", job.MaxSalary);
                 cmd.ExecuteNonQuery();
             this.conn.sqlConnection.Close();  // Ensure the connection is closed
+        }
+
+        public void InsertarJobLinq(jobs job)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            try
+            {
+                dc.jobs.InsertOnSubmit(job);
+                dc.SubmitChanges();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error al conectar " + ex);
+            }
         }
 
         // Método obtener jobs de bbdd
@@ -51,6 +67,13 @@ namespace EmployeesBBDD.DAL
             return jobs;
         }
 
+        public Table<jobs> ObtenerJobsLinq()
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            var data = dc.jobs;
+            return data;
+        }
+
         public void EliminarJob(int jobId)
         {
             this.conn.sqlConnection.Open();  // Ensure the connection is open
@@ -59,6 +82,24 @@ namespace EmployeesBBDD.DAL
                 cmd.Parameters.AddWithValue("@JobId", jobId);
                 cmd.ExecuteNonQuery();
             this.conn.sqlConnection.Close();  // Ensure the connection is closed
+        }
+
+        public void EliminarJobLinq(int jobId)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            try
+            {
+                var deleteJob = dc.jobs.FirstOrDefault(x => x.job_id == jobId);
+                if (deleteJob != null)
+                {
+                    dc.jobs.DeleteOnSubmit(deleteJob);
+                    dc.SubmitChanges();
+                }
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("ha ocurrido un error " + ex.Message);
+            }
         }
 
         public void EditarJob(int jobId, string newTitle, decimal minSalary, decimal maxSalary)
@@ -73,6 +114,38 @@ namespace EmployeesBBDD.DAL
             cmd.ExecuteNonQuery();
             this.conn.sqlConnection.Close();
         }
+
+        public void EditarJobLinq(int jobId, string newTitle, decimal minSalary, decimal maxSalary)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            try
+            {
+                // Recuperar el trabajo desde la base de datos
+                var jobEdit = dc.jobs.FirstOrDefault(x => x.job_id == jobId);
+
+                if (jobEdit != null)
+                {
+                    // Actualizar las propiedades del objeto
+                    jobEdit.job_title = newTitle;
+                    jobEdit.min_salary = minSalary;
+                    jobEdit.max_salary = maxSalary;
+
+                    // Guardar los cambios en la base de datos
+                    dc.SubmitChanges();
+
+                    MessageBox.Show("El trabajo se ha editado con éxito.");
+                }
+                else
+                {
+                    MessageBox.Show("No se encontró el trabajo con el ID especificado.");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Ha ocurrido un error: " + ex.Message);
+            }
+        }
+
     }
 
 }

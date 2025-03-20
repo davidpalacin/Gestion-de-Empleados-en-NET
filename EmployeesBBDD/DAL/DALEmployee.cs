@@ -89,8 +89,33 @@ namespace EmployeesBBDD.DAL
             DateTime hireDate,
             int jobId,
             int departmentId,
-            int managerId)
+            int managerId
+        )
         {
+            this.conn.sqlConnection.Open();
+            string sql = $"UPDATE Employees" +
+                $"SET first_name = @firstName," +
+                $"last_name = @lastName," +
+                $"email = @email," +
+                $"phone = @phone," +
+                $"hire_date = @hireDate," +
+                $"job_id = @jobId," +
+                $"department_id = departmentId," +
+                $"manager_id = managerId" +
+                $"WHERE employee_id = @employeeId";
+            SqlCommand cmd = new SqlCommand(sql, this.conn.GetConnection());
+            cmd.Parameters.AddWithValue("employeeId", id);
+            cmd.Parameters.AddWithValue("firstName", firstName);
+            cmd.Parameters.AddWithValue("lastName", lastName);
+            cmd.Parameters.AddWithValue("email", email);
+            cmd.Parameters.AddWithValue("phone", phone);
+            cmd.Parameters.AddWithValue("hireDate", hireDate);
+            cmd.Parameters.AddWithValue("jobId", jobId);
+            cmd.Parameters.AddWithValue("departmentId", departmentId);
+            cmd.Parameters.AddWithValue("managerId", managerId);
+            cmd.ExecuteNonQuery();
+            this.conn.sqlConnection.Close();
+
 
         }
     }

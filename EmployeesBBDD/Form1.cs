@@ -30,7 +30,7 @@ namespace EmployeesBBDD
         {
             try
             {
-                lstJobs.DataSource = dalJobs.ObtenerJobs();
+                lstJobs.DataSource = dalJobs.ObtenerJobsLinq();
             }
             catch (Exception ex)
             {
@@ -41,56 +41,41 @@ namespace EmployeesBBDD
         private void btnCrearJob_Click(object sender, EventArgs e)
         {
             string jobTitle = txtJobName.Text;
-            int minSalary = Convert.ToInt32(txtMinSalary.Text);
-            int maxSalary = Convert.ToInt32(txtMaxSalary.Text);
+            decimal minSalary = Convert.ToInt32(txtMinSalary.Text);
+            decimal maxSalary = Convert.ToInt32(txtMaxSalary.Text);
 
-            // Validar datos
-            bool isValid = ValidateData(jobTitle, minSalary, maxSalary);
-            if (isValid)
+            // Crear objeto job
+            jobs job = new jobs
             {
-                // Crear objeto job
-                Job job = new Job(jobTitle, minSalary, maxSalary);
+                job_title = jobTitle,
+                max_salary = maxSalary,
+                min_salary = minSalary,
+            };
 
-                dalJobs.InsertarJob(job);
-                MessageBox.Show("Job insertado correctamente");
-            } else
-            {
-                MessageBox.Show("Datos no válidos");
-            }
-        }
-
-        private bool ValidateData(string jobTitle, int minSalary, int maxSalary)
-        {
-            bool valid = true;
-            // Validar
-            if (jobTitle == "" || jobTitle == null || minSalary < 0  || maxSalary < 0 || maxSalary < minSalary)
-            {
-                valid = false;
-            }
-            return valid;
+            dalJobs.InsertarJobLinq(job);
+            MessageBox.Show("Job insertado correctamente");
+            btnActualizarTabla_Click(sender, e);
         }
 
         private void btnActualizarTabla_Click(object sender, EventArgs e)
         {
             // Cargar jobs
             lstJobs.DataSource = null;
-            lstJobs.DataSource = dalJobs.ObtenerJobs();
+            lstJobs.DataSource = dalJobs.ObtenerJobsLinq();
         }
 
         private void btnDeleteJob_Click(object sender, EventArgs e)
         {
-            Job selectedJob = (Job)lstJobs.SelectedItem;
-            DialogResult result = MessageBox.Show($"¿Seguro que deseas eliminar '{selectedJob.JobTitle}'?",
+            jobs selectedJob = (jobs)lstJobs.SelectedItem;
+            DialogResult result = MessageBox.Show($"¿Seguro que deseas eliminar '{selectedJob.job_title}'?",
                                       "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (result == DialogResult.Yes)
             {
-                dalJobs.EliminarJob(selectedJob.JobId);
+                dalJobs.EliminarJobLinq(selectedJob.job_id);
                 MessageBox.Show("Job eliminado correctamente");
 
-                // Recargar la lista después de eliminar
-                lstJobs.DataSource = null;
-                lstJobs.DataSource = dalJobs.ObtenerJobs();
+                btnActualizarTabla_Click (sender, e);
             }
         }
 
@@ -102,14 +87,14 @@ namespace EmployeesBBDD
 
         private void lstJobs_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Job selected = lstJobs.SelectedItem as Job;
+            jobs selected = lstJobs.SelectedItem as jobs;
             if (selected != null)
             {
-                string name = selected.JobTitle;
+                string name = selected.job_title;
                 btnEditarJob.Text = $"Editar {name}";
                 txtJobName.Text = name;
-                txtMinSalary.Text = Convert.ToString(selected.MinSalary);
-                txtMaxSalary.Text = Convert.ToString(selected.MaxSalary);
+                txtMinSalary.Text = Convert.ToString(selected.min_salary);
+                txtMaxSalary.Text = Convert.ToString(selected.max_salary);
             }
             else
             {
@@ -122,11 +107,11 @@ namespace EmployeesBBDD
             string newTitle = txtJobName.Text;
             decimal minSalary = Convert.ToDecimal(txtMinSalary.Text);
             decimal maxSalary = Convert.ToDecimal(txtMaxSalary.Text);
-            Job selected = lstJobs.SelectedItem as Job;
-            int jobId = selected.JobId;
+            jobs selected = lstJobs.SelectedItem as jobs;
+            int jobId = selected.job_id;
 
-            dalJobs.EditarJob(jobId, newTitle, minSalary, maxSalary);
-            lstJobs.SelectedIndex = jobId;
+            dalJobs.EditarJobLinq(jobId, newTitle, minSalary, maxSalary);
+            lstJobs.SelectedIndex = 0;
             MessageBox.Show("Job editado correctamente");
             btnActualizarTabla_Click(sender, e);
         }
