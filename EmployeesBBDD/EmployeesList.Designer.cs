@@ -104,7 +104,7 @@
             // 
             // btnCrearEmployee
             // 
-            this.btnCrearEmployee.Location = new System.Drawing.Point(358, 398);
+            this.btnCrearEmployee.Location = new System.Drawing.Point(537, 398);
             this.btnCrearEmployee.Name = "btnCrearEmployee";
             this.btnCrearEmployee.Size = new System.Drawing.Size(153, 49);
             this.btnCrearEmployee.TabIndex = 14;
@@ -147,7 +147,7 @@
             // cmbJob
             // 
             this.cmbJob.FormattingEnabled = true;
-            this.cmbJob.Location = new System.Drawing.Point(358, 103);
+            this.cmbJob.Location = new System.Drawing.Point(537, 103);
             this.cmbJob.Name = "cmbJob";
             this.cmbJob.Size = new System.Drawing.Size(191, 28);
             this.cmbJob.TabIndex = 30;
@@ -155,7 +155,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(354, 72);
+            this.label6.Location = new System.Drawing.Point(533, 72);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(88, 20);
             this.label6.TabIndex = 31;
@@ -165,7 +165,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(354, 157);
+            this.label7.Location = new System.Drawing.Point(533, 157);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(78, 20);
             this.label7.TabIndex = 32;
@@ -173,7 +173,7 @@
             // 
             // nudSalary
             // 
-            this.nudSalary.Location = new System.Drawing.Point(358, 189);
+            this.nudSalary.Location = new System.Drawing.Point(537, 189);
             this.nudSalary.Name = "nudSalary";
             this.nudSalary.Size = new System.Drawing.Size(191, 26);
             this.nudSalary.TabIndex = 33;
@@ -181,7 +181,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(354, 242);
+            this.label8.Location = new System.Drawing.Point(533, 242);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(69, 20);
             this.label8.TabIndex = 35;
@@ -191,7 +191,7 @@
             // cmbManager
             // 
             this.cmbManager.FormattingEnabled = true;
-            this.cmbManager.Location = new System.Drawing.Point(358, 273);
+            this.cmbManager.Location = new System.Drawing.Point(537, 273);
             this.cmbManager.Name = "cmbManager";
             this.cmbManager.Size = new System.Drawing.Size(191, 28);
             this.cmbManager.TabIndex = 34;
@@ -199,7 +199,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(354, 316);
+            this.label9.Location = new System.Drawing.Point(533, 316);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(132, 20);
             this.label9.TabIndex = 37;
@@ -209,16 +209,16 @@
             // cmbDepartment
             // 
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(358, 347);
+            this.cmbDepartment.Location = new System.Drawing.Point(537, 347);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(191, 28);
             this.cmbDepartment.TabIndex = 36;
             // 
             // btnDeleteEmployee
             // 
-            this.btnDeleteEmployee.Location = new System.Drawing.Point(997, 382);
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(876, 806);
             this.btnDeleteEmployee.Name = "btnDeleteEmployee";
-            this.btnDeleteEmployee.Size = new System.Drawing.Size(146, 51);
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(283, 51);
             this.btnDeleteEmployee.TabIndex = 40;
             this.btnDeleteEmployee.Text = "Eliminar Employee";
             this.btnDeleteEmployee.UseVisualStyleBackColor = true;
@@ -226,9 +226,9 @@
             // 
             // btnActualizarTabla
             // 
-            this.btnActualizarTabla.Location = new System.Drawing.Point(641, 382);
+            this.btnActualizarTabla.Location = new System.Drawing.Point(12, 806);
             this.btnActualizarTabla.Name = "btnActualizarTabla";
-            this.btnActualizarTabla.Size = new System.Drawing.Size(146, 51);
+            this.btnActualizarTabla.Size = new System.Drawing.Size(147, 51);
             this.btnActualizarTabla.TabIndex = 39;
             this.btnActualizarTabla.Text = "Actualizar";
             this.btnActualizarTabla.UseVisualStyleBackColor = true;
@@ -238,17 +238,17 @@
             // 
             this.lstEmployees.FormattingEnabled = true;
             this.lstEmployees.ItemHeight = 20;
-            this.lstEmployees.Location = new System.Drawing.Point(641, 72);
+            this.lstEmployees.Location = new System.Drawing.Point(12, 496);
             this.lstEmployees.Name = "lstEmployees";
-            this.lstEmployees.Size = new System.Drawing.Size(502, 304);
+            this.lstEmployees.Size = new System.Drawing.Size(1147, 304);
             this.lstEmployees.TabIndex = 38;
             this.lstEmployees.SelectedIndexChanged += new System.EventHandler(this.lstEmployees_SelectedIndexChanged);
             // 
             // btnEditarEmployee
             // 
-            this.btnEditarEmployee.Location = new System.Drawing.Point(793, 383);
+            this.btnEditarEmployee.Location = new System.Drawing.Point(181, 806);
             this.btnEditarEmployee.Name = "btnEditarEmployee";
-            this.btnEditarEmployee.Size = new System.Drawing.Size(198, 51);
+            this.btnEditarEmployee.Size = new System.Drawing.Size(689, 51);
             this.btnEditarEmployee.TabIndex = 41;
             this.btnEditarEmployee.Text = "Editar";
             this.btnEditarEmployee.UseVisualStyleBackColor = true;
@@ -256,9 +256,10 @@
             // 
             // EmployeesList
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1171, 526);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(144F, 144F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1195, 861);
             this.Controls.Add(this.btnEditarEmployee);
             this.Controls.Add(this.btnDeleteEmployee);
             this.Controls.Add(this.btnActualizarTabla);

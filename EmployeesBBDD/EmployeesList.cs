@@ -27,6 +27,12 @@ namespace EmployeesBBDD
             lstEmployees.DataSource = dalEmployee.ObtenerEmployeesLinq();
             cmbManager.DataSource = dalEmployee.ObtenerEmployeesLinq();
             cmbJob.DataSource = dalJobs.ObtenerJobsLinq();
+            cmbJob.DisplayMember = "job_title";
+            cmbJob.ValueMember = "job_id";
+            cmbDepartment.DisplayMember = "department_name";
+            cmbDepartment.ValueMember = "department_id";
+            cmbManager.DisplayMember = "last_name";
+            cmbManager.ValueMember = "employee_id";
 
             // Agregar la lista de departamentos
             DataClasses1DataContext dc = new DataClasses1DataContext();
@@ -82,22 +88,21 @@ namespace EmployeesBBDD
 
         private void lstEmployees_SelectedIndexChanged(object sender, EventArgs e)
         {
-            employees select = lstEmployees.SelectedItem as employees;
+            employees emp = lstEmployees.SelectedItem as employees;
 
-            if (select != null)
+            if (emp != null)
             {
-                string name = select.last_name;
+                string name = emp.last_name;
 
                 btnEditarEmployee.Text = $"Editar a {name}";
-                txtFirstName.Text = select.first_name;
-                txtLastName.Text = select.last_name;
-                nudSalary.Value = select.salary;
-                txtEmail.Text = select.email;
-                txtPhone.Text = select.phone_number;
-                dtpHireDate.Value = select.hire_date;
-                cmbJob.SelectedItem = select.jobs;
-                cmbDepartment.SelectedItem = select.departments;
-                cmbManager.SelectedItem = select.employees2;
+                txtFirstName.Text = emp.first_name;
+                txtLastName.Text = emp.last_name;
+                txtEmail.Text = emp.email;
+                txtPhone.Text = emp.phone_number;
+                dtpHireDate.Value = emp.hire_date;
+                cmbDepartment.SelectedValue = emp.department_id;
+                cmbManager.SelectedItem = emp.employees2;
+                cmbJob.SelectedValue = emp.jobs.job_id;
             }
             else
             {
