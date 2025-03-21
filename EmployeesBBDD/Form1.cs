@@ -41,8 +41,12 @@ namespace EmployeesBBDD
         private void btnCrearJob_Click(object sender, EventArgs e)
         {
             string jobTitle = txtJobName.Text;
-            decimal minSalary = Convert.ToInt32(txtMinSalary.Text);
-            decimal maxSalary = Convert.ToInt32(txtMaxSalary.Text);
+            decimal? minSalary = null;
+            decimal? maxSalary = null;
+            if (decimal.TryParse(txtMinSalary.Text, out decimal minSal))
+                minSalary = minSal;
+            if (decimal.TryParse(txtMaxSalary.Text, out decimal maxSal))
+                maxSalary = maxSal;
 
             // Crear objeto job
             jobs job = new jobs
