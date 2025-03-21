@@ -1,6 +1,7 @@
 ﻿using EmployeesBBDD.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
@@ -51,6 +52,13 @@ namespace EmployeesBBDD.DAL
             return employees;
         }
 
+        public Table<employees> ObtenerEmployeesLinq()
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            Table<employees> employees = dc.employees;
+            return employees;
+        }
+
         // Agregar un employee
         public void InsertarEmployee(Employee employee)
         {
@@ -70,6 +78,13 @@ namespace EmployeesBBDD.DAL
             this.conn.sqlConnection.Close();
         }
 
+        public void InsertarEmployeeLinq(employees employee)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            dc.employees.InsertOnSubmit(employee);
+            dc.SubmitChanges();
+        }
+
         public void EliminarEmployee(int employeeId)
         {
             this.conn.sqlConnection.Open();
@@ -78,6 +93,14 @@ namespace EmployeesBBDD.DAL
             command.Parameters.AddWithValue("@EmployeeId", employeeId);
             command.ExecuteNonQuery();
             this.conn.sqlConnection.Close();
+        }
+
+        public void EliminarEmployeeLinq(int employeeId)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            employees employee = dc.employees.Single(x => x.employee_id == employeeId);
+            dc.employees.DeleteOnSubmit(employee);
+            dc.SubmitChanges();
         }
 
         public void EditarEmployee(
@@ -115,8 +138,29 @@ namespace EmployeesBBDD.DAL
             cmd.Parameters.AddWithValue("managerId", managerId);
             cmd.ExecuteNonQuery();
             this.conn.sqlConnection.Close();
+        }
 
-
+        public void EditarEmployeeLinq(int id,
+            string firstName,
+            string lastName,
+            string email,
+            string phone,
+            DateTime hireDate,
+            int jobId,
+            int departmentId,
+            int managerId)
+        {
+            DataClasses1DataContext dc = new DataClasses1DataContext();
+            employees employee = dc.employees.Single(x => x.employee_id == id);
+            employee.first_name = firstName;
+            employee.last_name = lastName;
+            employee.email = email;
+            employee.phone_number = phone;
+            employee.hire_date = hireDate;
+            employee.job_id = jobId;
+            employee.department_id = departmentId;
+            employee.manager_id = managerId;
+            dc.SubmitChanges();
         }
     }
 }
