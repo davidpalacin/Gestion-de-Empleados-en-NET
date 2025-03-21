@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Linq;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,8 +36,14 @@ namespace EmployeesBBDD.DAL
             DataClasses1DataContext dc = new DataClasses1DataContext();
             try
             {
+                Stopwatch sw = new Stopwatch();
+
+                sw.Start();
                 dc.jobs.InsertOnSubmit(job);
                 dc.SubmitChanges();
+                sw.Stop();
+
+                Console.WriteLine("Tiempo de ejecución al insertar: " + sw.ElapsedMilliseconds + " ms");
             }
             catch (Exception ex)
             {
@@ -70,7 +77,11 @@ namespace EmployeesBBDD.DAL
         public Table<jobs> ObtenerJobsLinq()
         {
             DataClasses1DataContext dc = new DataClasses1DataContext();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
             var data = dc.jobs;
+            sw.Stop();
+            Console.WriteLine("Tiempo de ejecución al obtener: " + sw.ElapsedMilliseconds + " ms");
             return data;
         }
 
@@ -92,8 +103,12 @@ namespace EmployeesBBDD.DAL
                 var deleteJob = dc.jobs.FirstOrDefault(x => x.job_id == jobId);
                 if (deleteJob != null)
                 {
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
                     dc.jobs.DeleteOnSubmit(deleteJob);
                     dc.SubmitChanges();
+                    sw.Stop();
+                    Console.WriteLine("Tiempo de ejecución al eliminar: " + sw.ElapsedMilliseconds + " ms");
                 }
             }
             catch(Exception ex)
@@ -125,6 +140,8 @@ namespace EmployeesBBDD.DAL
 
                 if (jobEdit != null)
                 {
+                    Stopwatch sw = new Stopwatch();
+                    sw.Start();
                     // Actualizar las propiedades del objeto
                     jobEdit.job_title = newTitle;
                     jobEdit.min_salary = minSalary;
@@ -132,6 +149,9 @@ namespace EmployeesBBDD.DAL
 
                     // Guardar los cambios en la base de datos
                     dc.SubmitChanges();
+                    sw.Stop();
+                    Console.WriteLine($"Tiempo de ejecución al editar: {sw.ElapsedMilliseconds} ms");
+
 
                     MessageBox.Show("El trabajo se ha editado con éxito.");
                 }
